@@ -1,10 +1,10 @@
 const About = () => {
   const skills = {
-    languages: ["Java", "C++", "HTML", "CSS", "JavaScript", "Python", "C", "PHP"],
-    frameworks: ["NodeJS", "ReactJS", "ExpressJS"],
+    languages: ["Java", "C++", "HTML", "CSS", "JavaScript", "Python"],
+    frameworks: ["Node.js", "React.js", "Express.js", "Tailwind", "Vite"],
     databases: ["MySQL", "MongoDB"],
     tools: ["Figma", "Canva"],
-    soft: ["DSA", "Problem-Solving", "Project Management"]
+    soft: ["DSA", "Problem-Solving", "Project Management", "Leadership", "Communication"]
   };
   return <section id="about" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
