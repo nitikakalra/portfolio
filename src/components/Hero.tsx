@@ -1,58 +1,139 @@
-import { ArrowDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-const Hero = () => {
-  const scrollToPortfolio = () => {
-    const element = document.getElementById("portfolio");
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-  };
-  return <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div className="text-center md:text-left order-2 md:order-1">
-          <div className="mb-6">
-            <span className="inline-block px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium mb-4">
-              🎓 Available for new opportunities
-            </span>
-          </div>
-          
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Nitika</span>
-          </h1>
-          
-          <h2 className="text-xl md:text-2xl text-gray-300 mb-6">
-            A Full Stack Developer passionate about crafting modern and intelligent web applications
-          </h2>
-          
-          <p className="text-gray-400 mb-8 text-lg leading-relaxed">Computer Science student specializing in Web Development, and Frontend Development. Currently pursuing B.Tech  with a focus on building innovative solutions.</p>
-          
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button onClick={scrollToPortfolio} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
-              View My Work
-            </Button>
-            
-            <Button variant="outline" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300" onClick={() => window.open('https://github.com/nitikakalra', '_blank')}>
-              GitHub Profile
-            </Button>
-          </div>
+import { Button } from '@/components/ui/button';
+import { ChevronDown, Sparkles, Code, Zap } from 'lucide-react';
+
+interface HeroProps {
+  scrollToSection: (sectionId: string) => void;
+}
+
+const Hero = ({ scrollToSection }: HeroProps) => {
+  return (
+    <section className="min-h-screen flex items-center pt-20 bg-gradient-dark relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-portfolio-blue/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-portfolio-purple/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
+          <div className="absolute top-20 left-20 text-portfolio-gray/20 text-9xl font-bold select-none">{'<>'}</div>
+          <div className="absolute bottom-20 right-20 text-portfolio-gray/20 text-9xl font-bold select-none">{'</>'}</div>
         </div>
-        
-        <div className="flex justify-center order-1 md:order-2">
-          <div className="relative">
-            <div className="w-80 h-80 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1 animate-pulse">
-              <div className="w-full h-full rounded-full bg-slate-900 p-2">
-                <img src="https://i.postimg.cc/4xr026nn/Whats-App-Image-2025-07-06-at-13-22-58-68d23a3d.jpg" alt="Nitika Kalra" className="w-full h-full rounded-full object-cover" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Profile Image */}
+          <div className="order-2 lg:order-1 flex justify-center lg:justify-start animate-fade-in-left">
+            <div className="relative group">
+              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-primary p-1 group-hover:scale-105 transition-transform duration-500">
+                <div className="w-full h-full rounded-full bg-portfolio-dark flex items-center justify-center relative overflow-hidden">
+                  <img 
+                    src="https://i.postimg.cc/4xr026nn/Whats-App-Image-2025-07-06-at-13-22-58-68d23a3d.jpg"
+                    alt="Nitika Kalra"
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-full"></div>
+                </div>
+              </div>
+              <div className="absolute -inset-6 bg-gradient-primary rounded-full opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
+              
+              {/* Floating icons */}
+              <div className="absolute -top-4 -right-4 bg-portfolio-blue/20 backdrop-blur-sm rounded-full p-3 animate-bounce delay-300">
+                <Code className="text-portfolio-blue" size={20} />
+              </div>
+              <div className="absolute -bottom-4 -left-4 bg-portfolio-purple/20 backdrop-blur-sm rounded-full p-3 animate-bounce delay-700">
+                <Zap className="text-portfolio-purple" size={20} />
               </div>
             </div>
-            
-            <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full p-4 animate-bounce">
-              <ArrowDown className="text-white w-6 h-6" />
+          </div>
+
+          {/* Hero Content */}
+          <div className="order-1 lg:order-2 text-center lg:text-left animate-fade-in-right space-y-8">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-gradient-primary/10 border border-portfolio-blue/20 rounded-full px-4 py-2 text-sm text-portfolio-blue backdrop-blur-sm">
+              <Sparkles size={16} className="animate-pulse" />
+              <span>Available for new projects</span>
             </div>
+
+            {/* Main heading */}
+            <div className="space-y-6">
+              <h2 className="text-xl lg:text-2xl text-portfolio-light-gray font-light tracking-wide">
+                👋 Hello, I'm <span className="text-white font-medium">Nitika Kalra</span>
+              </h2>
+              
+              <h1 className="text-5xl lg:text-7xl font-black leading-tight tracking-tight">
+                <span className="block text-white mb-2">Full Stack</span>
+                <span className="block bg-gradient-primary bg-clip-text text-transparent relative">
+                  Developer
+                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-primary rounded-full opacity-50"></div>
+                </span>
+              </h1>
+
+              <p className="text-lg lg:text-xl text-portfolio-light-gray max-w-2xl leading-relaxed font-light">
+                I'm a <span className="text-white font-medium">computer science student</span> passionate about 
+                building modern web applications with cutting-edge technology and 
+                <span className="text-portfolio-blue font-medium"> seamless user experiences</span>.
+              </p>
+            </div>
+
+            {/* Tech stack badges */}
+            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+              {['React.js', 'Next.js', 'Node.js', 'Tailwind CSS'].map((tech) => (
+                <div
+                  key={tech}
+                  className="px-4 py-2 bg-portfolio-gray/30 backdrop-blur-sm rounded-lg text-sm text-portfolio-light-gray border border-portfolio-gray/20 hover:border-portfolio-blue/30 hover:text-portfolio-blue transition-all duration-300"
+                >
+                  {tech}
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+              <Button
+                onClick={() => scrollToSection('portfolio')}
+                className="group bg-gradient-primary hover:opacity-90 text-white px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-portfolio-blue/25 border-0"
+              >
+                <span>View My Work</span>
+                <ChevronDown className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={20} />
+              </Button>
+              
+              <Button
+                onClick={() => scrollToSection('contact')}
+                variant="outline"
+                className="border-2 border-portfolio-blue/50 bg-portfolio-blue/5 text-portfolio-blue hover:bg-portfolio-blue hover:text-white px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-portfolio-blue backdrop-blur-sm"
+              >
+                Let's Connect
+              </Button>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-portfolio-gray/20">
+              <div className="text-center lg:text-left">
+                <div className="text-2xl lg:text-3xl font-bold text-white">3+</div>
+                <div className="text-sm text-portfolio-light-gray">Years Learning</div>
+              </div>
+              <div className="text-center lg:text-left">
+                <div className="text-2xl lg:text-3xl font-bold text-white">15+</div>
+                <div className="text-sm text-portfolio-light-gray">Projects Built</div>
+              </div>
+              <div className="text-center lg:text-left">
+                <div className="text-2xl lg:text-3xl font-bold text-white">100%</div>
+                <div className="text-sm text-portfolio-light-gray">Dedication</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Improved Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
+          <span className="text-xs text-portfolio-light-gray uppercase tracking-wider">Scroll Down</span>
+          <div className="flex flex-col gap-1 animate-bounce">
+            <ChevronDown className="text-portfolio-light-gray" size={20} />
+            <ChevronDown className="text-portfolio-light-gray/50 -mt-2" size={16} />
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
