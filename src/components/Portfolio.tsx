@@ -16,7 +16,7 @@ const Portfolio = () => {
       title: "ResumeXpert",
       description: "A full-stack resume builder with live preview and PDF generation. Backend APIs using Node.js and Express handle resume data, with MongoDB for storage.",
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "HTML", "CSS", "JavaScript"],
-      image: "https://pin.it/1zotlY95x",
+      image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=400&fit=crop",
       live: "https://resume-builder-1-d75g.onrender.com/",
       badge: "Full Stack"
     },
